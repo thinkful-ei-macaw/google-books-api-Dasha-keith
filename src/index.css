@@ -36,3 +36,10 @@ legend {
 select#js-print-type.print-type {
   list-style: square;
 }
+li {
+  list-style: none;
+}
+div.search_result {
+  text-align: wrap;
+  float: right;
+}

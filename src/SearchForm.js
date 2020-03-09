@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 class SearchForm extends Component {
-  
   render() {
     return (
       <div className="search_form">
@@ -43,8 +42,8 @@ class SearchForm extends Component {
                 aria-label="Filter results by book type, whatever tf that means"
               >
                 <option value="all">No Filter</option>
-                <option value="free">Some Filter</option>
-                <option value="not free">ALL the Filter</option>
+                <option value="ebook">E-book</option>
+                <option value="paperbook">ALL the Filter</option>
               </select>
             </p>
           </fieldset>
@@ -53,23 +52,20 @@ class SearchForm extends Component {
     );
   }
 
+  onSubmit = e => {
+    e.preventDefault();
+    const values = Object.fromEntries(new FormData(e.target));
+    console.log("am i running");
+    const searchUrl = `https://www.googleapis.com/books/v1/volumes?q=${values.query}`;
+    fetch(searchUrl)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
 
-
-onSubmit = (e)=> {
-  e.preventDefault();
-  const values = Object.fromEntries(new FormData(e.target));
-  console.log('am i running')
-  const searchUrl = `https://www.googleapis.com/books/v1/volumes?q=${values.query}`;
-  fetch(searchUrl)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-    
-      this.props.setBooks(data.items);
-    });
+        this.props.setBooks(data.items);
+      });
+  };
 }
-}
-
 
 SearchForm.defaultProps = {
   books: []

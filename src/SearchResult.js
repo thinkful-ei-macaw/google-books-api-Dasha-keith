@@ -6,8 +6,9 @@ class SearchResult extends Component {
       <li>
         <h2>{book.volumeInfo.title}</h2>
         <img src={book.volumeInfo.imageLinks.thumbnail} />
+        <p> {book.volumeInfo.description}</p>
       </li>
-    ))
+    ));
     return (
       <div className="search_result">
         <ul>{books}</ul>
@@ -23,8 +24,7 @@ class SearchResult extends Component {
     // }
   }
 
-
- /* componentDidMount() {
+  /* componentDidMount() {
     const searchUrl = "https://www.googleapis.com/auth/books";
     fetch(searchUrl)
       .then(response => response.json())
@@ -37,6 +37,5 @@ class SearchResult extends Component {
   }
 */
 }
-
 
 export default SearchResult;

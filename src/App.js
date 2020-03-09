@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import SearchResult from "./SearchResult";
 
-
-
 class App extends Component {
-  state = {books: []};
+  state = { books: [] };
   setBooks = books => {
-    this.setState({books})
-  }
+    this.setState({ books });
+  };
 
   render() {
     return (
@@ -18,6 +16,7 @@ class App extends Component {
 
         {/* //<h2>{SearchResult}</h2> */}
         <SearchResult books={this.state.books} />
+        {/* <Filter /> */}
       </div>
     );
   }
