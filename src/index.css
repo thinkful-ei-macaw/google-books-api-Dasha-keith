@@ -33,3 +33,6 @@ legend {
 #filter-label {
   margin-left: 80px;
 }
+select#js-print-type.print-type {
+  list-style: square;
+}
