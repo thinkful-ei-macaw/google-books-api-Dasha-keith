@@ -1,17 +1,23 @@
 import React, { Component } from "react";
-//import "./App.css";
 import SearchForm from "./SearchForm";
 import SearchResult from "./SearchResult";
 
+
+
 class App extends Component {
+  state = {books: []};
+  setBooks = books => {
+    this.setState({books})
+  }
+
   render() {
     return (
       <div className="Google book search">
         <h1>Google Book Search</h1>
-        <SearchForm books={[{ name: "Barbados" }, { name: "Bahrain" }]} />
+        <SearchForm setBooks={this.setBooks} />
 
         {/* //<h2>{SearchResult}</h2> */}
-        <SearchResult />
+        <SearchResult books={this.state.books} />
       </div>
     );
   }

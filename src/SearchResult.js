@@ -2,9 +2,15 @@ import React, { Component } from "react";
 
 class SearchResult extends Component {
   render() {
+    let books = this.props.books.map(book => (
+      <li>
+        <h2>{book.volumeInfo.title}</h2>
+        <img src={book.volumeInfo.imageLinks.thumbnail} />
+      </li>
+    ))
     return (
       <div className="search_result">
-        <h2>results</h2>
+        <ul>{books}</ul>
       </div>
     );
 
@@ -17,7 +23,8 @@ class SearchResult extends Component {
     // }
   }
 
-  componentDidMount() {
+
+ /* componentDidMount() {
     const searchUrl = "https://www.googleapis.com/auth/books";
     fetch(searchUrl)
       .then(response => response.json())
@@ -28,6 +35,8 @@ class SearchResult extends Component {
         });
       });
   }
+*/
 }
+
 
 export default SearchResult;

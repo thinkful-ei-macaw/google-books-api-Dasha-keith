@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 
 class SearchForm extends Component {
+  
   render() {
     return (
       <div className="search_form">
-        <form>
+        <form onSubmit={this.onSubmit}>
           <fieldset>
             <legend>search here</legend>
             <input
               type="text"
               id="js-search-query"
               placeholder="search"
+              name="query"
               required
             ></input>
             <button type="submit" id="Search">
@@ -23,7 +25,7 @@ class SearchForm extends Component {
               <select
                 className="print-type"
                 id="js-print-type"
-                name="Print-type"
+                name="print-type"
                 aria-label="Filter results by print type"
               >
                 <option value="all">All</option>
@@ -37,7 +39,7 @@ class SearchForm extends Component {
               <select
                 className="book-type"
                 id="js-book-type"
-                name="Book-type"
+                name="booktype"
                 aria-label="Filter results by book type, whatever tf that means"
               >
                 <option value="all">No Filter</option>
@@ -50,7 +52,24 @@ class SearchForm extends Component {
       </div>
     );
   }
+
+
+
+onSubmit = (e)=> {
+  e.preventDefault();
+  const values = Object.fromEntries(new FormData(e.target));
+  console.log('am i running')
+  const searchUrl = `https://www.googleapis.com/books/v1/volumes?q=${values.query}`;
+  fetch(searchUrl)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+    
+      this.props.setBooks(data.items);
+    });
 }
+}
+
 
 SearchForm.defaultProps = {
   books: []
